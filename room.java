@@ -13,12 +13,12 @@ class Room {
 	}
 
 
-	public void createNewRoom (String name) {
-		room newRoom = new room();
-		newRoom.name = name;
-		newRoom.description = null;
-		newRoom.options = new HashMap<Character, String>();
-	}
+	// public void createNewRoom (String name) {
+	// 	room newRoom = new room();
+	// 	newRoom.name = name;
+	// 	newRoom.description = null;
+	// 	newRoom.options = new HashMap<Character, String>();
+	// }
 
 	// public void addDescription(String description) {
 	// 	room.description = description;

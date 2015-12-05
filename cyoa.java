@@ -16,14 +16,21 @@ class cyoa {
 		String inputline;
 		while(scan.hasNextLine()) {
 			inputline = scan.nextLine();
-			System.out.println(inputline);
-			command = inputline.charAt(0);
+			System.out.println("-> "+inputline);
+			if (inputline.equals("")) {
+				command = ' ';
+			} else {
+				command = inputline.charAt(0);
+			}
+			
 			switch(command) {
 				case 'r': 
 					System.out.println("r");
 					Room room = new Room();
 					String roomName = inputline.substring(2);
 					worldMap.put(roomName, room);
+
+					System.out.println(worldMap);
 					break;
 				case 'd': 
 					String desc = inputline.substring(2);
@@ -36,6 +43,9 @@ class cyoa {
 				case 't': 
 					String tag = inputline.substring(2);
 					System.out.println("t");
+					break;
+				case ' ':
+					System.out.println("blank line");
 					break;
 				default : break;
 			}
