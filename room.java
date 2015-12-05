@@ -12,7 +12,6 @@ class Room {
 		HashMap<Character, String> options;
 	}
 
-
 	// public void createNewRoom (String name) {
 	// 	room newRoom = new room();
 	// 	newRoom.name = name;
