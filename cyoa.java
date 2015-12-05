@@ -8,8 +8,9 @@ class cyoa {
 	static void processFile(String filename) throws IOException {
 		Scanner scan = new Scanner (new File(filename));
 
-		
-
+		while(scan.hasNextLine()) {
+			adventure.insert()
+		}
 	}
 
 	public static void main(String[] args) {
