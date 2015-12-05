@@ -2,12 +2,16 @@
 
 import java.io.*;
 import java.util.Scanner;
+import java.util.HashMap;
 import static java.lang.System.*;
 
 class cyoa {
-	static void processFile(String filename) throws IOException {
+	private static HashMap<String, Room> worldMap;
+
+	static void buildWorld(String filename) throws IOException {
 		Scanner scan = new Scanner (new File(filename));
 
+		HashMap<String, Room> worldMap = new HashMap<String, Room>();
 		char command;
 		String inputline;
 		while(scan.hasNextLine()) {
@@ -17,6 +21,9 @@ class cyoa {
 			switch(command) {
 				case 'r': 
 					System.out.println("r");
+					Room room = new Room();
+					String roomName = inputline.substring(2);
+					worldMap.put(roomName, room);
 					break;
 				case 'd': 
 					System.out.println("d");
@@ -37,7 +44,7 @@ class cyoa {
 		System.out.println(filename);
 
 		try {
-            processFile(filename);
+            buildWorld(filename);
         }catch (IOException error) {
             
         }
