@@ -26,12 +26,15 @@ class cyoa {
 					worldMap.put(roomName, room);
 					break;
 				case 'd': 
+					String desc = inputline.substring(2);
 					System.out.println("d");
 					break;
 				case 'o': 
+					String option = inputline.substring(2);
 					System.out.println("o");
 					break;
 				case 't': 
+					String tag = inputline.substring(2);
 					System.out.println("t");
 					break;
 				default : break;
