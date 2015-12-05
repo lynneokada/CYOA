@@ -4,13 +4,22 @@ import java.io.*;
 import java.util.Scanner;
 import static java.lang.System.*;
 
-class room {
+class Room {
 	private class room {
 		String name;
+		String description;
+		HashMap<char, String> options;
 	}
 
-	public void room (String name) {
-		room newRoom = new room();
+
+	public void createNewRoom (String name) {
+		Room newRoom = new Room();
 		room.name = name;
+		room.description = null;
+		room.options = new HashMap<char, String>();
+	}
+
+	public void addDescription(String description) {
+		room.description = description;
 	}
 }
