@@ -9,6 +9,7 @@ class Room {
 	String name;
 	String description;
 	HashMap<Character, String> options;
+	String tag;
 
 	// public class room {
 		

@@ -8,6 +8,7 @@ import static java.lang.System.*;
 class Adventure {
 
 	private static HashMap<String, Room> worldMap;
+	private static HashMap<Character, String> options;
 
 	static void buildWorld(String filename) throws IOException {
 		Scanner scan = new Scanner (new File(filename));
@@ -16,6 +17,7 @@ class Adventure {
 		worldMap = new HashMap<String, Room>();
 		char command;
 		String inputline;
+		int opIndex = 0;
 		Room currentRoom = new Room();
 
 		while(scan.hasNextLine()) {
@@ -32,7 +34,7 @@ class Adventure {
 				case 'r': 
 					System.out.println("r");
 					Room room = new Room();
-					HashMap<String, Room> options = new HashMap<String, String>();;
+					opIndex = 97;
 					String name = inputline.substring(2);
 					room.name = name;
 					worldMap.put(name, room);
@@ -44,13 +46,19 @@ class Adventure {
 					System.out.println("d");
 					break;
 				case 'o': 
+					if (currentRoom.options == null) {
+						options = new HashMap<Character, String>();
+					}
 					String option = inputline.substring(2);
-					options.put(,option);
+					System.out.println((char)opIndex);
 					currentRoom.options = options;
+					opIndex++;
+					options.put((char)opIndex,option);
 					System.out.println("o");
 					break;
 				case 't': 
 					String tag = inputline.substring(2);
+					currentRoom.tag = tag;
 					System.out.println("t");
 					break;
 				case ' ':
