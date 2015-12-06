@@ -86,9 +86,18 @@ class Adventure {
         System.out.println(currentRoom.description);
         System.out.println("");
         for(Map.Entry<Character, String> entry : options.entrySet()){
-        	System.out.println(entry.getKey()+" "+entry.getValue());
+        	System.out.println(entry.getKey()+" - "+entry.getValue());
         }
         System.out.println("");
+        
+        BufferedReader inpt = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            String selection = inpt.readLine();
+            
+        }catch (IOException error) {
+            System.out.println("invalid option!");
+        }
+
         
 	}
 
