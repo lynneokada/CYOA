@@ -1,4 +1,4 @@
-// room.java - Room class
+// Room.java - Room class
 
 import java.io.*;
 import java.util.Scanner;
@@ -6,11 +6,13 @@ import java.util.HashMap;
 import static java.lang.System.*;
 
 class Room {
-	private class room {
-		String name;
-		String description;
-		HashMap<Character, String> options;
-	}
+	String name;
+	String description;
+	HashMap<Character, String> options;
+
+	// public class room {
+		
+	// }
 
 	// public void createNewRoom (String name) {
 	// 	room newRoom = new room();

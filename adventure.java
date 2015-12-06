@@ -1,4 +1,4 @@
-// adventure.java - read the input of adventure file
+// Adventure.java - read the input of adventure file
 
 import java.io.*;
 import java.util.Scanner;
@@ -12,9 +12,12 @@ class Adventure {
 	static void buildWorld(String filename) throws IOException {
 		Scanner scan = new Scanner (new File(filename));
 
-		HashMap<String, Room> world = new HashMap<String, Room>();
+		// HashMap<String, Room> world = new HashMap<String, Room>();
+		worldMap = new HashMap<String, Room>();
 		char command;
 		String inputline;
+		Room currentRoom = new Room();
+
 		while(scan.hasNextLine()) {
 			inputline = scan.nextLine();
 
@@ -29,15 +32,21 @@ class Adventure {
 				case 'r': 
 					System.out.println("r");
 					Room room = new Room();
+					HashMap<String, Room> options = new HashMap<String, String>();;
 					String name = inputline.substring(2);
-					world.put(name, room);
+					room.name = name;
+					worldMap.put(name, room);
+					currentRoom = room;
 					break;
 				case 'd': 
 					String desc = inputline.substring(2);
+					currentRoom.description = desc;
 					System.out.println("d");
 					break;
 				case 'o': 
 					String option = inputline.substring(2);
+					options.put(,option);
+					currentRoom.options = options;
 					System.out.println("o");
 					break;
 				case 't': 
@@ -60,5 +69,10 @@ class Adventure {
         }catch (IOException error) {
             
         }
+
+        // System.out.println(worldMap.firstEntry().getValue());
 	}
+
+	// Room creation functions
+	// public void 
 }
