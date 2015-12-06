@@ -3,6 +3,7 @@
 import java.io.*;
 import java.util.Scanner;
 import java.util.HashMap;
+import java.util.Map;
 import static java.lang.System.*;
 
 class Adventure {
@@ -50,11 +51,11 @@ class Adventure {
 						options = new HashMap<Character, String>();
 					}
 					String option = inputline.substring(2);
-					System.out.println((char)opIndex);
+					// System.out.println((char)opIndex);
 					currentRoom.options = options;
-					opIndex++;
 					options.put((char)opIndex,option);
 					System.out.println("o");
+					opIndex++;
 					break;
 				case 't': 
 					String tag = inputline.substring(2);
@@ -70,15 +71,25 @@ class Adventure {
 	}
 
 	public void startAdventure(String filename) {
-		System.out.println("Start new adventure");
+
+		// Iterator it = worldMap.entrySet().iterator();
 
 		try {
             buildWorld(filename);
         }catch (IOException error) {
-            
+            System.out.println("invalid adventure!");
         }
 
-        // System.out.println(worldMap.firstEntry().getValue());
+        Room currentRoom = new Room();
+        // System.out.println(worldMap);
+        currentRoom = worldMap.get("room1");
+        System.out.println(currentRoom.description);
+        System.out.println("");
+        for(Map.Entry<Character, String> entry : options.entrySet()){
+        	System.out.println(entry.getKey()+" "+entry.getValue());
+        }
+        System.out.println("");
+        
 	}
 
 	// Room creation functions
