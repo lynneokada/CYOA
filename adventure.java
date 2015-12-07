@@ -14,6 +14,7 @@ class Adventure {
 	private static HashMap<String, Room> worldMap;
 	private static HashMap<Character, String[]> options;
 	private static String[] arr; 
+	static int roomCount = 0;
 
 	static void buildWorld(String filename) throws IOException {
 		Scanner scan = new Scanner (new File(filename));
@@ -44,6 +45,7 @@ class Adventure {
 					room.name = name;
 					worldMap.put(name, room);
 					currentRoom = room;
+					roomCount++;
 					// System.out.println("CURR: "+currentRoom);
 					break;
 				case 'd': 
@@ -105,22 +107,30 @@ class Adventure {
         		String selection = inpt.readLine();
         		char ch = selection.charAt(0);
 
-        		System.out.println("["+options.get(ch)[0]+"]");
-        		System.out.println("");
+        		if (selection.equals("z")) {
 
-        		currentRoom = worldMap.get(options.get(ch)[1]);
-        		System.out.println("ARRAY: " + arr[0]+","+arr[1]);
-        		System.out.println(currentRoom.description);
-        		System.out.println("");
-        		// for(Map.Entry<String, Room> entry : worldMap.entrySet()){
-        		// 	System.out.println(entry.getKey()+" - "+entry.getValue());
-        		// 	System.out.println("OPTIONS: "+entry.getValue().options.get('a')[1]+" , "+entry.getValue().options.get('b')[1]);
-        		// }
+        		}else if (selection.equals("y")) {
+        			System.out.println("[information]");
+        			worldAlphaSort();
+        			System.out.println("");
 
-        		for(Map.Entry<Character, String[]> entry : options.entrySet()){
-        			System.out.println(entry.getKey()+" - "+entry.getValue()[0]);
+        		} else if (selection.equals("q")) {
+        			System.out.println("[quit]");
+        			System.out.println("");
+        		} else {
+        			System.out.println("["+options.get(ch)[0]+"]");
+        			System.out.println("");
+
+        			currentRoom = worldMap.get(options.get(ch)[1]);
+        			System.out.println("ARRAY: " + arr[0]+","+arr[1]);
+        			System.out.println(currentRoom.description);
+        			System.out.println("");
+
+        			for(Map.Entry<Character, String[]> entry : options.entrySet()){
+        				System.out.println(entry.getKey()+" - "+entry.getValue()[0]);
+        			}
+        			System.out.println("");	        		
         		}
-        		System.out.println("");
         	}
         }catch (IOException error) {
             System.out.println("invalid option!");
@@ -133,6 +143,18 @@ class Adventure {
 		System.out.println(currentRoom.description);
 	}
 
-	// Room creation functions
-	// public void 
+	void worldAlphaSort() {
+		int index=0;
+		String[] sortedWorld = new String[roomCount];
+
+		for(Map.Entry<String, Room> entry : worldMap.entrySet()){
+        	// System.out.println(entry.getKey()+" - "+entry.getValue());
+        	sortedWorld[index] = entry.getKey();
+        	index++;
+        }
+
+        for (int i = 0; i<sortedWorld.length; i++) {
+        	System.out.println(sortedWorld[i]);
+        }
+	}
 }
