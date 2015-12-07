@@ -109,9 +109,9 @@ class Adventure {
         		historyLog.insert(ch);
 
         		if (selection.equals("z")) {
-        			System.out.println(historyLog);
         			historyLog.remove();
-        			System.out.println(historyLog);
+        			System.out.println("PREV"+historyLog.remove());
+        			// currentRoom = worldMap.get(options.get(historyLog.remove())[1]);
         		}else if (selection.equals("y")) {
         			System.out.println("[information]");
         			worldAlphaSort();
@@ -125,7 +125,6 @@ class Adventure {
         			System.out.println("");
 
         			currentRoom = worldMap.get(options.get(ch)[1]);
-        			System.out.println("ARRAY: " + arr[0]+","+arr[1]);
         			System.out.println(currentRoom.description);
         			System.out.println("");
 

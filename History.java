@@ -9,7 +9,6 @@ class History {
 	private class Node {
       char item;
       Node prev;
-      Node next;
    	}
    	private Node head = null;
 
@@ -28,14 +27,16 @@ class History {
       	} else {
         	Node newNode = new Node();
         	newNode.item = newitem;
-        	newNode.next = null;
+        	newNode.prev = head;
+        	head = newNode;
       	}
 
-      	System.out.println("add "+newitem);
+      	// System.out.println("add "+newitem);
    	}
 
-   	public void remove() {
+   	public char remove() {
         head = head.prev;
-        System.out.println(head.item);
+
+        return head.item;
     }
 }
