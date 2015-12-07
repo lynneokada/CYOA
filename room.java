@@ -8,8 +8,7 @@ import static java.lang.System.*;
 class Room {
 	String name;
 	String description;
-	HashMap<Character, String> options;
-	String tag;
+	HashMap<Character, String[]> options;
 
 	// public class room {
 		

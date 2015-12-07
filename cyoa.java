@@ -9,7 +9,7 @@ class cyoa {
 	
 	public static void main(String[] args) {
 		String filename = args[0];
-		System.out.println(filename);
+		// System.out.println(filename);
 		
 		Adventure newAdventure = new Adventure();
         
