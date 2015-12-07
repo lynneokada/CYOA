@@ -15,10 +15,10 @@ class Adventure {
 	private static HashMap<Character, String[]> options;
 	private static String[] arr; 
 	static int roomCount = 0;
+	private static History historyLog = new History();
 
 	static void buildWorld(String filename) throws IOException {
 		Scanner scan = new Scanner (new File(filename));
-
 		// HashMap<String, Room> world = new HashMap<String, Room>();
 		worldMap = new HashMap<String, Room>();
 		char command;
@@ -106,9 +106,12 @@ class Adventure {
         	while (true) {
         		String selection = inpt.readLine();
         		char ch = selection.charAt(0);
+        		historyLog.insert(ch);
 
         		if (selection.equals("z")) {
-
+        			System.out.println(historyLog);
+        			historyLog.remove();
+        			System.out.println(historyLog);
         		}else if (selection.equals("y")) {
         			System.out.println("[information]");
         			worldAlphaSort();
