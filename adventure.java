@@ -154,7 +154,13 @@ class Adventure {
         }
 
         for (int i = 0; i<sortedWorld.length; i++) {
-        	System.out.println(sortedWorld[i]);
+        	System.out.print(sortedWorld[i]+" :");
+        	options = worldMap.get(sortedWorld[i]).options;
+        	for (Map.Entry<Character, String[]> entry : options.entrySet()) {
+        		System.out.print(" "+entry.getValue()[1]);
+        	}
+        	System.out.println("");
         }
+
 	}
 }
