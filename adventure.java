@@ -50,7 +50,11 @@ class Adventure {
 					break;
 				case 'd': 
 					String desc = inputline.substring(2);
-					currentRoom.description = desc;
+					if (currentRoom.description == null) {
+						currentRoom.description = desc + "\n";
+					} else {
+						currentRoom.description = currentRoom.description+desc +"\n";
+					}
 					// System.out.println("d");
 					break;
 				case 'o': 
@@ -69,7 +73,7 @@ class Adventure {
 				case 't': 
 					String tag = inputline.substring(2);
 					arr[1] = tag;
-					System.out.println(arr[0]+","+arr[1]);
+					// System.out.println(arr[0]+","+arr[1]);
 					// System.out.println("t");
 					break;
 				case ' ':
@@ -94,7 +98,6 @@ class Adventure {
 
         startPoint(currentRoom);
 
-        System.out.println("");
         for(Map.Entry<Character, String[]> entry : options.entrySet()){
         	System.out.println(entry.getKey()+" - "+entry.getValue()[0]);
         }
@@ -114,7 +117,7 @@ class Adventure {
         			// currentRoom = worldMap.get(options.get(historyLog.remove())[1]);
         		}else if (selection.equals("y")) {
         			System.out.println("[information]");
-        			worldAlphaSort();
+        			displayInformation();
         			System.out.println("");
 
         		} else if (selection.equals("q")) {
@@ -145,7 +148,7 @@ class Adventure {
 		System.out.println(currentRoom.description);
 	}
 
-	void worldAlphaSort() {
+	void displayInformation() {
 		int index=0;
 		String[] sortedWorld = new String[roomCount];
 
@@ -155,6 +158,8 @@ class Adventure {
         	index++;
         }
 
+        Arrays.sort(sortedWorld);
+
         for (int i = 0; i<sortedWorld.length; i++) {
         	System.out.print(sortedWorld[i]+" :");
         	options = worldMap.get(sortedWorld[i]).options;
@@ -163,6 +168,5 @@ class Adventure {
         	}
         	System.out.println("");
         }
-
 	}
 }
