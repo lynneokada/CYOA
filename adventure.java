@@ -16,6 +16,7 @@ class Adventure {
 	private static String[] arr; 
 	static int roomCount = 0;
 	private static History historyLog = new History();
+	static String firstRoom;
 
 	static void buildWorld(String filename) throws IOException {
 		Scanner scan = new Scanner (new File(filename));
@@ -25,6 +26,7 @@ class Adventure {
 		String inputline;
 		int opIndex = 0;
 		Room currentRoom = new Room();
+		
 
 		while(scan.hasNextLine()) {
 			inputline = scan.nextLine();
@@ -42,6 +44,9 @@ class Adventure {
 					Room room = new Room();
 					opIndex = 97;
 					String name = inputline.substring(2);
+					if (worldMap.size()==0) {
+						firstRoom = name;
+					}
 					room.name = name;
 					worldMap.put(name, room);
 					currentRoom = room;
@@ -86,8 +91,6 @@ class Adventure {
 
 	public void startAdventure(String filename) {
 
-		// Iterator it = worldMap.entrySet().iterator();
-
 		try {
             buildWorld(filename);
         }catch (IOException error) {
@@ -95,13 +98,8 @@ class Adventure {
         }
 
         Room currentRoom = new Room();
-
+        currentRoom = worldMap.get(firstRoom);
         startPoint(currentRoom);
-
-        for(Map.Entry<Character, String[]> entry : options.entrySet()){
-        	System.out.println(entry.getKey()+" - "+entry.getValue()[0]);
-        }
-        System.out.println("");
         
         BufferedReader inpt = new BufferedReader(new InputStreamReader(System.in));
         
@@ -112,9 +110,8 @@ class Adventure {
         		historyLog.insert(ch);
 
         		if (selection.equals("z")) {
+        			System.out.println("undoing a move");
         			historyLog.remove();
-        			System.out.println("PREV"+historyLog.remove());
-        			// currentRoom = worldMap.get(options.get(historyLog.remove())[1]);
         		}else if (selection.equals("y")) {
         			System.out.println("[information]");
         			displayInformation();
@@ -124,10 +121,10 @@ class Adventure {
         			System.out.println("[quit]");
         			System.out.println("");
         		} else {
-        			System.out.println("["+options.get(ch)[0]+"]");
+        			System.out.println("["+currentRoom.options.get(ch)[0]+"]");
         			System.out.println("");
 
-        			currentRoom = worldMap.get(options.get(ch)[1]);
+        			currentRoom = worldMap.get(currentRoom.options.get(ch)[1]);
         			System.out.println(currentRoom.description);
         			System.out.println("");
 
@@ -143,9 +140,11 @@ class Adventure {
 	}
 
 	void startPoint(Room currentRoom) {
-		Map.Entry<String, Room> entry = worldMap.entrySet().iterator().next();
-		currentRoom = entry.getValue();
 		System.out.println(currentRoom.description);
+		for(Map.Entry<Character, String[]> entry : currentRoom.options.entrySet()){
+        	System.out.println(entry.getKey()+" - "+entry.getValue()[0]);
+        }
+        System.out.println("");
 	}
 
 	void displayInformation() {
@@ -163,8 +162,15 @@ class Adventure {
         for (int i = 0; i<sortedWorld.length; i++) {
         	System.out.print(sortedWorld[i]+" :");
         	options = worldMap.get(sortedWorld[i]).options;
+        	if (options == null) {
+        		options = new HashMap<Character, String[]>();
+        	}
         	for (Map.Entry<Character, String[]> entry : options.entrySet()) {
-        		System.out.print(" "+entry.getValue()[1]);
+        		if (entry == null) {
+        			System.out.println("no tag");
+        		} else {
+        			System.out.print(" "+entry.getValue()[1]);
+        		}
         	}
         	System.out.println("");
         }

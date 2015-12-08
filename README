@@ -1,7 +1,10 @@
 // README - README file for assignment 10
 
 README
-design.pdf OR design.txt
+design.pdf
 Makefile
-[your project files]
+cyao.java
+Adventure.java
+Room.java
+History.java
 demo.adventure
